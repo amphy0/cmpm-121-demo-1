@@ -29,9 +29,8 @@ app.append(sushiChefs2);
 const sushiChefs3 = document.createElement("p");
 app.append(sushiChefs3);
 
-
 const button = document.createElement("button");
-button.textContent = "Click Me 🍣";
+button.textContent = "Make a sushi 🍣";
 app.append(button);
 
 const growth1button = document.createElement("button");
@@ -49,15 +48,13 @@ growth3button.textContent = `Purchase pro sushi chefs (${cost3}🍣 each)`;
 app.append(growth3button);
 growth3button.disabled = true;
 
-
 const setCounter = (count: number) => {
-    counter = count;
-    sushiCounter.innerHTML = `number of 🍣: ${counter.toFixed(0)}`;
-    growth1button.disabled = counter < cost1;
-    growth2button.disabled = counter < cost2;
-    growth3button.disabled = counter < cost3;
+  counter = count;
+  sushiCounter.innerHTML = `number of 🍣: ${counter.toFixed(0)}`;
+  growth1button.disabled = counter < cost1;
+  growth2button.disabled = counter < cost2;
+  growth3button.disabled = counter < cost3;
 };
-
 
 button.addEventListener("click", () => setCounter(counter + 1));
 
@@ -80,30 +77,30 @@ requestAnimationFrame(animate);
 growth1button.addEventListener("click", () => {
   if (counter >= cost1) {
     setCounter(counter - cost1);
-      growthRate += 0.1;
-      cost1 *= 1.15;
-      chef1 += 1;
-      sushiRate.innerHTML = `sushi/s: ${growthRate}`;
-      sushiChefs1.innerHTML = `home sushi shefs: ${chef1}`
+    growthRate += 0.1;
+    cost1 *= 1.15;
+    chef1 += 1;
+    sushiRate.innerHTML = `sushi/s: ${growthRate}`;
+    sushiChefs1.innerHTML = `home sushi shefs: ${chef1}`;
   }
 });
 growth2button.addEventListener("click", () => {
   if (counter >= cost2) {
     setCounter(counter - cost2);
-      growthRate += 2;
-      cost2 *= 1.15;
-      chef2 += 1;
-      sushiRate.innerHTML = `sushi/s: ${growthRate}`;
-      sushiChefs2.innerHTML = `amateur sushi shefs: ${chef2}`
+    growthRate += 2;
+    cost2 *= 1.15;
+    chef2 += 1;
+    sushiRate.innerHTML = `sushi/s: ${growthRate}`;
+    sushiChefs2.innerHTML = `amateur sushi shefs: ${chef2}`;
   }
 });
 growth3button.addEventListener("click", () => {
   if (counter >= cost3) {
     setCounter(counter - cost3);
-      growthRate += 50;
-      cost3 *= 1.15;
-      chef3 += 1;
-      sushiRate.innerHTML = `sushi/s: ${growthRate}`;
-      sushiChefs3.innerHTML = `pro sushi shefs: ${chef3}`
+    growthRate += 50;
+    cost3 *= 1.15;
+    chef3 += 1;
+    sushiRate.innerHTML = `sushi/s: ${growthRate}`;
+    sushiChefs3.innerHTML = `pro sushi shefs: ${chef3}`;
   }
 });

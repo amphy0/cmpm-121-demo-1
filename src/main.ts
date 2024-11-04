@@ -11,24 +11,53 @@ interface Item {
 }
 
 const availableItems: Item[] = [
-  { name: "Home Sushi Chef", cost: 10, rate: 0.1, quantity: 0, description: "friendly home cook"},
-    { name: "Amateur Sushi Chef", cost: 100, rate: 2, quantity: 0, description: "amateur thats been practicing" },
-    { name: "Pro Sushi Chef", cost: 1000, rate: 50, quantity: 0, description: "he's a pro, rolling and serving" },
-    { name: "Sushi Restaurant", cost: 10000, rate: 800, quantity: 0, description: "the production power of a whole restuarant" },
-    { name: "Sushi Factory", cost: 100000, rate: 9000, quantity: 0, description: "they have factories for this??" },
+  {
+    name: "Home Sushi Chef",
+    cost: 10,
+    rate: 0.1,
+    quantity: 0,
+    description: "friendly home cook",
+  },
+  {
+    name: "Amateur Sushi Chef",
+    cost: 100,
+    rate: 2,
+    quantity: 0,
+    description: "amateur thats been practicing",
+  },
+  {
+    name: "Pro Sushi Chef",
+    cost: 1000,
+    rate: 50,
+    quantity: 0,
+    description: "he's a pro, rolling and serving",
+  },
+  {
+    name: "Sushi Restaurant",
+    cost: 10000,
+    rate: 800,
+    quantity: 0,
+    description: "the production power of a whole restuarant",
+  },
+  {
+    name: "Sushi Factory",
+    cost: 100000,
+    rate: 9000,
+    quantity: 0,
+    description: "they have factories for this??",
+  },
 ];
 
 let counter: number = 0;
 let growthRate: number = 0;
-
+const costGrowthRate = 1.15;
 const gameName = "Sushi Stop";
-document.title = gameName;
-
 const header = document.createElement("h1");
+const sushiCounter = document.createElement("p");
+
+document.title = gameName;
 header.innerHTML = gameName;
 app.append(header);
-
-const sushiCounter = document.createElement("p");
 app.append(sushiCounter);
 const sushiRate = document.createElement("p");
 app.append(sushiRate);
@@ -52,12 +81,12 @@ app.append(button);
 const updateUI = () => {
   sushiCounter.innerHTML = `number of 🍣: ${counter.toFixed(0)}`;
   sushiRate.innerHTML = `sushi/s: ${growthRate.toFixed(1)}`;
+};
 
-  availableItems.forEach((item, index) => {
+availableItems.forEach((item, index) => {
     itemElements[index].button.disabled = counter < item.cost;
     itemElements[index].label.innerHTML = `${item.name}s: ${item.quantity}`;
-  });
-};
+});
 
 const setCounter = (count: number) => {
   counter = count;
@@ -87,7 +116,7 @@ availableItems.forEach((item, index) => {
     if (counter >= item.cost) {
       setCounter(counter - item.cost);
       growthRate += item.rate;
-      item.cost *= 1.15;
+      item.cost *= costGrowthRate;
       item.quantity += 1;
       itemElements[index].button.textContent =
         `Purchase ${item.name} (${item.cost.toFixed(0)}🍣 each)`;

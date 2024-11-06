@@ -84,8 +84,8 @@ const updateUI = () => {
 };
 
 availableItems.forEach((item, index) => {
-    itemElements[index].button.disabled = counter < item.cost;
-    itemElements[index].label.innerHTML = `${item.name}s: ${item.quantity}`;
+  itemElements[index].button.disabled = counter < item.cost;
+  itemElements[index].label.innerHTML = `${item.name}s: ${item.quantity}`;
 });
 
 const setCounter = (count: number) => {
